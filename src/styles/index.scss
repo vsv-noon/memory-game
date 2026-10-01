@@ -1,0 +1,11 @@
+@use './reset';
+@use './functions';
+@use './media';
+@use './variables';
+@use './tokens/font';
+
+body {
+  margin: 0 auto;
+  max-width: $breakpoint-desktop;
+  font-family: var(--font-inter);
+}
