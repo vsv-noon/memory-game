@@ -1,4 +1,4 @@
-.main {
+main {
   margin: 0 auto;
   padding: rem(5px);
   display: flex;
@@ -10,7 +10,7 @@
     margin-bottom: rem(30px);
   }
 
-  .cardsContainer {
+  .cardsBoard {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: rem(30px);
