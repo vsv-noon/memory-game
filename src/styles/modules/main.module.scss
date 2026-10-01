@@ -1,4 +1,31 @@
 .main {
-  // margin: 0 auto;
-  // max-width: var($breakpoint-desktop);
+  margin: 0 auto;
+  padding: rem(5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .h1 {
+    margin-bottom: rem(30px);
+  }
+
+  .cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: rem(30px);
+  }
+
+  .card {
+    max-width: rem(150px);
+    height: auto;
+    padding: rem(10px);
+    border: 1px solid #5c5c5c;
+    cursor: pointer;
+  }
+  .icon {
+    width: 100%;
+    height: 100%;
+    color: #5c5c5c;
+  }
 }
