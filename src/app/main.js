@@ -8,6 +8,7 @@ import {
   faHouse,
   faPlane,
   faUser,
+  faQuestionCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import '@/styles/index.scss';
@@ -23,7 +24,8 @@ library.add(
   faHeart,
   faHouse,
   faPlane,
-  faUser
+  faUser,
+  faQuestionCircle
 );
 
 dom.watch();

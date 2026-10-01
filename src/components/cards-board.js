@@ -14,18 +14,20 @@ export function createCardsBoard() {
     const card = document.createElement('div');
     card.className = styles.card;
 
-    card.addEventListener('click', flipCard);
-
-    const cardFront = document.createElement('div');
+    const cardFront = document.createElement('i');
     cardFront.className = styles.cardFront;
+    cardFront.classList.add('fa', 'fa-question-circle');
 
-    const icon = document.createElement('i');
-    icon.className = styles.cardBack;
-    icon.classList.add('fa-solid', item);
+    const cardBack = document.createElement('i');
+    cardBack.className = styles.cardBack;
+    cardBack.classList.add('fa-solid', item);
 
-    card.append(icon);
+    card.addEventListener('click', flipCard);
+    card.dataset.item = item;
+    card.append(cardFront, cardBack);
     cardsBoard.append(card);
   }
+  console.log(cardsBoard);
 
   return cardsBoard;
 }
@@ -40,12 +42,41 @@ function flipCard(event) {
     gameState.firstCard = clickedCard;
   } else {
     gameState.secondCard = clickedCard;
+    gameState.lockBoard = true;
     gameState.moves++;
     updateStats();
+    checkMatch();
+  }
+}
+
+function checkMatch() {
+  const isMatch =
+    gameState.firstCard.dataset.item === gameState.secondCard.dataset.item;
+
+  if (isMatch) {
+    setTimeout(() => {
+      gameState.firstCard.classList.add(styles.matched);
+      gameState.secondCard.classList.add(styles.matched);
+      gameState.matches++;
+      updateStats();
+      resetCards();
+    }, 500);
+  } else {
+    setTimeout(() => {
+      gameState.firstCard.classList.remove(styles.flipped);
+      gameState.secondCard.classList.remove(styles.flipped);
+      resetCards();
+    }, 1000);
   }
 }
 
 function updateStats() {
   document.querySelector('#moves').textContent = gameState.moves;
   document.querySelector('#matches').textContent = gameState.matches;
+}
+
+function resetCards() {
+  gameState.firstCard = undefined;
+  gameState.secondCard = undefined;
+  gameState.lockBoard = false;
 }
