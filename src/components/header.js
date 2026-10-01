@@ -1,10 +1,9 @@
 import { startNewGame } from '@/utils/start-new-game';
 import styles from '@/styles/modules/header.module.scss';
 import { totalPairs } from '@/constants/constants';
+import { gameState } from './main';
 
 export function createHeader() {
-  let moves = 0;
-  let matches = 0;
 
   const header = document.createElement('header');
   header.className = styles.header;
@@ -23,22 +22,24 @@ export function createHeader() {
   stats.className = styles.stats;
   stats.textContent = 'Moves: ';
   const statsSpan = document.createElement('span');
+  statsSpan.id = 'moves';
   statsSpan.className = styles.movesSpan;
-  statsSpan.textContent = moves;
+  statsSpan.textContent = gameState.moves;
 
   stats.append(statsSpan);
 
   const pairsDiv = document.createElement('div');
   pairsDiv.className = styles.pairs;
-  pairsDiv.textContent = 'Pairs: ';
+  pairsDiv.textContent = 'Matches: ';
   const pairsSpan = document.createElement('span');
+  pairsSpan.id = 'matches';
   pairsSpan.className = styles.pairsSpan;
-  pairsSpan.textContent = matches;
+  pairsSpan.textContent = gameState.matches;
   pairsDiv.append(pairsSpan, ` from ${totalPairs}`);
 
   newGameButton.addEventListener('click', () => {
-    moves = 0;
-    matches = 0;
+    gameState.moves = 0;
+    gameState.matches = 0;
     statsSpan.textContent = '0';
     pairsSpan.textContent = '0';
     startNewGame();

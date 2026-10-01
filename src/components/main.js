@@ -1,6 +1,14 @@
 import { createCardsBoard } from './cards-board';
 import styles from '@/styles/modules/main.module.scss';
 
+export const gameState = {
+  firstCard: undefined,
+  secondCard: undefined,
+  lockBoard: false,
+  moves: 0,
+  matches: 0
+}
+
 export function createMain() {
   const main = document.createElement('main');
 
