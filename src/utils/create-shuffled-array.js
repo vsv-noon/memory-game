@@ -1,4 +1,4 @@
-import { cardIcons } from '@/constants/constants';
+import { cardIcons } from '@/constants/cards';
 import { fisherYatesShuffle } from './shuffle';
 
 export function createShuffledArray() {

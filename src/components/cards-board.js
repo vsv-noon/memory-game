@@ -1,7 +1,8 @@
 import { createShuffledArray } from '@/utils/create-shuffled-array';
+import { gameState } from './main';
+import { createModal } from './modal';
 
 import styles from '@/styles/modules/main.module.scss';
-import { gameState } from './main';
 
 export function createCardsBoard() {
   const shuffled = createShuffledArray();
@@ -27,7 +28,6 @@ export function createCardsBoard() {
     card.append(cardFront, cardBack);
     cardsBoard.append(card);
   }
-  console.log(cardsBoard);
 
   return cardsBoard;
 }
@@ -60,13 +60,17 @@ function checkMatch() {
       gameState.matches++;
       updateStats();
       resetCards();
+
+      if (gameState.matches === gameState.totalPairs) {
+        endGame();
+      }
     }, 500);
   } else {
     setTimeout(() => {
       gameState.firstCard.classList.remove(styles.flipped);
       gameState.secondCard.classList.remove(styles.flipped);
       resetCards();
-    }, 1000);
+    }, 600);
   }
 }
 
@@ -79,4 +83,9 @@ function resetCards() {
   gameState.firstCard = undefined;
   gameState.secondCard = undefined;
   gameState.lockBoard = false;
+}
+
+function endGame() {
+  const dialog = createModal();
+  dialog.showModal();
 }

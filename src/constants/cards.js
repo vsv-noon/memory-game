@@ -9,4 +9,4 @@ export const cardIcons = [
   'fa-user',
 ];
 
-export const totalPairs = 8;
+// export const totalPairs = 8;
