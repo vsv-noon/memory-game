@@ -59,6 +59,7 @@ function checkMatch() {
       gameState.firstCard.classList.add(styles.matched);
       gameState.secondCard.classList.add(styles.matched);
       gameState.matches++;
+
       updateStats();
       resetCards();
 
@@ -87,6 +88,19 @@ function resetCards() {
 }
 
 function endGame() {
+  let array = localStorage.getItem('results')
+    ? JSON.parse(localStorage.getItem('results'))
+    : [];
+
+  array.push({ moves: gameState.moves, date: new Date().toISOString() });
+  array.sort(
+    (a, b) => a.moves - b.moves || new Date(a.date) - new Date(b.date)
+  );
+
+  let results = array.slice(0, 10);
+
+  localStorage.setItem('results', JSON.stringify(results));
+
   const dialog = createModal();
   const winModal = createWinModal();
   dialog.open(winModal);

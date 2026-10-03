@@ -8,5 +8,3 @@ export const cardIcons = [
   'fa-plane',
   'fa-user',
 ];
-
-// export const totalPairs = 8;
