@@ -13,10 +13,7 @@ export function createNewGameButton() {
     gameState.matches = 0;
     document.querySelector('#moves').textContent = '0';
     document.querySelector('#matches').textContent = '0';
-
-    if (document.querySelector('#modal')) {
-      document.querySelector('#modal').close();
-    }
+    dispatchEvent(new CustomEvent('app:modal-close'));
     startNewGame();
   });
 

@@ -1,5 +1,4 @@
 import { createCardsBoard } from './cards-board';
-
 import styles from '@/styles/modules/main.module.scss';
 
 export const gameState = {

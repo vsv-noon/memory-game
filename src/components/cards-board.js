@@ -1,6 +1,7 @@
 import { createShuffledArray } from '@/utils/create-shuffled-array';
 import { gameState } from './main';
 import { createModal } from './modal';
+import { createWinModal } from './win-modal';
 
 import styles from '@/styles/modules/main.module.scss';
 
@@ -70,7 +71,7 @@ function checkMatch() {
       gameState.firstCard.classList.remove(styles.flipped);
       gameState.secondCard.classList.remove(styles.flipped);
       resetCards();
-    }, 600);
+    }, 700);
   }
 }
 
@@ -87,5 +88,6 @@ function resetCards() {
 
 function endGame() {
   const dialog = createModal();
-  dialog.showModal();
+  const winModal = createWinModal();
+  dialog.open(winModal);
 }
