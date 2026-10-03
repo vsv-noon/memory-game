@@ -1,8 +1,9 @@
+import { formatDate } from '@/utils/format-date';
 import styles from '@/styles/modules/modal.module.scss';
 
 export function createLeaderboardModal() {
   const leaderboard = document.createElement('div');
-  leaderboard.className = styles.leaderboard;
+  leaderboard.className = styles.leaderboardModal;
 
   const h2 = document.createElement('h2');
   h2.className = styles.h2;
@@ -15,7 +16,7 @@ export function createLeaderboardModal() {
   const table = document.createElement('table');
   table.className = styles.table;
 
-  const tr = document.createElement('tr');
+  const header = document.createElement('tr');
 
   const place = document.createElement('th');
   place.textContent = 'Place';
@@ -26,11 +27,29 @@ export function createLeaderboardModal() {
   const date = document.createElement('th');
   date.textContent = 'Date';
 
-  tr.append(place, moves, date);
+  header.append(place, moves, date);
+  table.append(header);
 
-  table.append(tr);
+  const results = localStorage.getItem('results')
+    ? JSON.parse(localStorage.getItem('results'))
+    : undefined;
 
-  const results = localStorage.getItem('results');
+  if (results) {
+    for (const [index, result] of results.entries()) {
+      const row = document.createElement('tr');
+      row.className = styles.row;
+      const place = document.createElement('td');
+      place.textContent = index + 1;
+      const moves = document.createElement('td');
+      moves.textContent = result.moves;
+      const date = document.createElement('td');
+      date.textContent = formatDate(result.date);
+
+      row.append(place, moves, date);
+
+      table.append(row);
+    }
+  }
 
   leaderboard.append(h2, results ? table : h3);
 
