@@ -1,0 +1,77 @@
+@use '/src/styles/media' as *;
+
+main {
+  margin: 0 auto;
+  padding: rem(5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .h1 {
+    margin-bottom: rem(30px);
+  }
+
+  .cardsBoard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: rem(30px);
+  }
+
+  .card {
+    position: relative;
+    width: rem(150px);
+    height: rem(150px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: rem(10px);
+    border: 1px solid #5c5c5c;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+
+    @include down($breakpoint-tablet) {
+      width: rem(100px);
+      height: rem(100px);
+    }
+
+    @include down($breakpoint-upper-mobile) {
+      width: rem(70px);
+      height: rem(70px);
+    }
+
+    &.flipped {
+      transform: rotateY(180deg);
+    }
+
+    &.matched {
+      pointer-events: none;
+    }
+  }
+
+  .cardFront,
+  .cardBack {
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cardFront {
+    width: 70%;
+    height: 70%;
+    color: #274d5a;
+    background-color: #fff;
+  }
+
+  .cardBack {
+    background-color: #fff;
+    width: 90%;
+    height: 90%;
+    color: #5c5c5c;
+    transform: rotateY(180deg);
+    overflow: hidden;
+  }
+}

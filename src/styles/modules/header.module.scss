@@ -1,0 +1,10 @@
+.header {
+  padding: rem(20px);
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    padding: rem(5px) rem(10px);
+    cursor: pointer;
+  }
+}
