@@ -1,7 +1,17 @@
+@use '/src/styles/media' as *;
+
 .header {
-  padding: rem(20px);
+  margin: 0 auto;
+  max-width: $breakpoint-tablet;
+  padding: rem(20px) rem(5px);
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  @include down($breakpoint-upper-mobile) {
+    flex-direction: column-reverse;
+    gap: rem(5px);
+  }
 
   button {
     padding: rem(5px) rem(10px);

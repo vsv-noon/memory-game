@@ -81,7 +81,7 @@ function updateStats() {
   document.querySelector('#matches').textContent = gameState.matches;
 }
 
-function resetCards() {
+export function resetCards() {
   gameState.firstCard = undefined;
   gameState.secondCard = undefined;
   gameState.lockBoard = false;

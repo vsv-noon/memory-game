@@ -1,5 +1,6 @@
 import { gameState } from './main';
 import { startNewGame } from '@/utils/start-new-game';
+import { resetCards } from './cards-board';
 import styles from '@/styles/modules/button.module.scss';
 
 export function createNewGameButton() {
@@ -14,6 +15,8 @@ export function createNewGameButton() {
     document.querySelector('#moves').textContent = '0';
     document.querySelector('#matches').textContent = '0';
     dispatchEvent(new CustomEvent('app:modal-close'));
+
+    resetCards();
     startNewGame();
   });
 

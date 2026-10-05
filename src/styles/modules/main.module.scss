@@ -32,11 +32,6 @@ main {
     transition: transform 0.5s;
 
     @include down($breakpoint-tablet) {
-      width: rem(100px);
-      height: rem(100px);
-    }
-
-    @include down($breakpoint-upper-mobile) {
       width: rem(70px);
       height: rem(70px);
     }
