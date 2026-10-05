@@ -11,14 +11,32 @@ export function createModal() {
   closeButton.className = styles.closeButton;
   closeButton.textContent = 'close';
 
-  closeButton.addEventListener('click', () => dialog.close());
-
-  const close = () => dialog.close();
-  addEventListener('app:modal-close', close);
-
   const contentContainer = document.createElement('div');
 
   dialog.append(closeButton, contentContainer);
+
+  const close = () => {
+    dialog.close();
+    document.body.style.overflow = '';
+  };
+
+  closeButton.addEventListener('click', () => close());
+
+  dialog.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    close();
+  });
+
+  addEventListener('app:modal-close', close);
+
+  const open = (content) => {
+    contentContainer.replaceChildren(
+      typeof content === 'string' ? document.createTextNode(content) : content
+    );
+
+    dialog.showModal();
+    document.body.style.overflow = 'hidden';
+  };
 
   dialog.addEventListener('click', (event) => {
     const rect = dialog.getBoundingClientRect();
@@ -29,20 +47,12 @@ export function createModal() {
       event.clientY < rect.top ||
       event.clientY > rect.bottom;
 
-    if (isClickOutside) {
-      dialog.close();
+    if (!isClickOutside) {
+      return;
     }
+
+    close();
   });
 
-  return {
-    open(content) {
-      contentContainer.replaceChildren(
-        typeof content === 'string' ? document.createTextNode(content) : content
-      );
-      dialog.showModal();
-    },
-    close() {
-      dialog.close();
-    },
-  };
+  return { open, close };
 }

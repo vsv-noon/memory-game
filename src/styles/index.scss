@@ -4,6 +4,10 @@
 @use './variables';
 @use './tokens/font';
 
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   margin: 0 auto;
   max-width: $breakpoint-desktop;
