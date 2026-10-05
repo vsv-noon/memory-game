@@ -2,6 +2,7 @@ import { gameState } from './main';
 import { startNewGame } from '@/utils/start-new-game';
 import { resetCards } from './cards-board';
 import styles from '@/styles/modules/button.module.scss';
+import mainStyles from '@/styles/modules/main.module.scss';
 
 export function createNewGameButton() {
   const newGameButton = document.createElement('button');
@@ -16,8 +17,16 @@ export function createNewGameButton() {
     document.querySelector('#matches').textContent = '0';
     dispatchEvent(new CustomEvent('app:modal-close'));
 
+    const cards = document.querySelectorAll(`.${mainStyles.card}`);
+
+    for (const card of cards) {
+      card.classList.remove(mainStyles.flipped);
+    }
+
     resetCards();
-    startNewGame();
+    setTimeout(() => {
+      startNewGame();
+    }, 300);
   });
 
   return newGameButton;
