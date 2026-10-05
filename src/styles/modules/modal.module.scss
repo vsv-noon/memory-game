@@ -1,4 +1,4 @@
-.modal {
+dialog {
   position: relative;
   margin: auto;
   border: none;
@@ -9,9 +9,21 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   text-align: center;
 
+  opacity: 0;
+  transform: translateY(-20px) scale(0.9);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    overlay 0.3s allow-discrete,
+    display 0.3s ease allow-discrete;
+
   &::backdrop {
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0);
+
+    transition:
+      background-color 0.3s ease,
+      overlay 0.3s allow-discrete,
+      display 0.3s ease allow-discrete;
   }
 
   button {
@@ -23,6 +35,23 @@
     top: rem(5px);
     right: rem(5px);
     padding: rem(5px);
+  }
+}
+
+dialog[open] {
+  opacity: 1;
+  transform: translateY(-20px) scale(1);
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+}
+
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: scale(0.9);
   }
 }
 

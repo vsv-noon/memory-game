@@ -9,3 +9,14 @@ body {
   max-width: $breakpoint-desktop;
   font-family: var(--font-inter);
 }
+
+button {
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  color: #fff;
+  background-color: #707070;
+}
