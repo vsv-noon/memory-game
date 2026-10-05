@@ -1,0 +1,26 @@
+@use './reset';
+@use './functions';
+@use './media';
+@use './variables';
+@use './tokens/font';
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0 auto;
+  max-width: $breakpoint-desktop;
+  font-family: var(--font-inter);
+}
+
+button {
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  color: #fff;
+  background-color: #707070;
+}

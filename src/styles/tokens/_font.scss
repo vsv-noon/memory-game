@@ -1,0 +1,34 @@
+@use '@fontsource-variable/inter';
+@use '../functions' as *;
+
+:root {
+  //size
+
+  --heading-1: #{rem(72px)};
+  --heading-1-mobile: #{rem(42px)};
+  --heading-2: #{rem(60px)};
+  --heading-2-mobile: #{rem(32px)};
+  --heading-3: #{rem(24px)};
+
+  --body-medium: #{rem(16px)};
+  --body-caption: #{rem(10px)};
+
+  --link-and-button: #{rem(16px)};
+  --burger-link: #{rem(32px)};
+
+  //weight
+  --weight-thin: 100;
+  --weight-extra-light: 200;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extra-bold: 800;
+  --weight-black: 900;
+
+  //Font-family
+  --font-inter:
+    'Inter Variable', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe Ui',
+    sans-serif;
+}
